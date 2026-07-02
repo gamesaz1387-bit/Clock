@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tehran Glass Clock</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Tahoma,sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:transparent;
+}
+
+.clock{
+    padding:20px 35px;
+    border-radius:22px;
+
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    box-shadow:
+    0 8px 32px rgba(0,0,0,.25),
+    inset 0 0 10px rgba(255,255,255,.12);
+
+    color:#fff;
+    text-align:center;
+}
+
+#time{
+    font-size:42px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+#date{
+    margin-top:10px;
+    font-size:18px;
+    opacity:.85;
+}
+</style>
+
+</head>
+<body>
+
+<div class="clock">
+    <div id="time">00:00:00</div>
+    <div id="date"></div>
+</div>
+
+<script>
+
+function updateClock(){
+
+const now=new Date();
+
+document.getElementById("time").innerHTML=
+new Intl.DateTimeFormat("fa-IR",{
+timeZone:"Asia/Tehran",
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit",
+hour12:false
+}).format(now);
+
+document.getElementById("date").innerHTML=
+new Intl.DateTimeFormat("fa-IR",{
+timeZone:"Asia/Tehran",
+weekday:"long",
+year:"numeric",
+month:"long",
+day:"numeric"
+}).format(now);
+
+}
+
+updateClock();
+setInterval(updateClock,1000);
+
+</script>
+
+</body>
+</html>
